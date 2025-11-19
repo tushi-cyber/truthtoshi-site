@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Token Lookup</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-theme="dark">
+
+<button class="toggle-theme" onclick="toggleTheme()">🌗</button>
+
+<header>
+  <h1>Token Lookup</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="token.html">Token Lookup</a>
+    <a href="swap.html">Swap</a>
+    <a href="pools.html">Pools</a>
+  </nav>
+</header>
+
+<section>
+  <div class="card">
+    <input id="tokenMint" placeholder="Enter token mint address...">
+    <button class="btn" onclick="lookupToken()">Check Token</button>
+    <div id="tokenOutput" style="margin-top:15px;"></div>
+  </div>
+</section>
+
+<footer>© 2025 TruthToshi</footer>
+
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+<script src="https://unpkg.com/@raydium-io/raydium-sdk@latest/dist/index.iife.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+async function lookupToken() {
+  const mint = document.getElementById("tokenMint").value.trim();
+  if(!mint) return alert("Enter token mint address!");
+  try{
+    const pools = await raydiumSDK.getMultiplePools(connection, [mint]);
+    if(pools.length>0){
+      const pool = pools[0];
+      document.getElementById("tokenOutput").innerText = 
+      `Price: $${pool.tokenBPrice.toFixed(4)}, Liquidity: ${pool.lpTotalSupply.toFixed(2)}`;
+    } else {
+      document.getElementById("tokenOutput").innerText = "No Raydium pool found.";
+    }
+  } catch(e){ console.error(e);}
+}
+</script>
+
+</body>
+</html>

@@ -1,169 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TruthToshi – The Future of Transparent Crypto</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TruthToshi – The Future of Transparent Crypto</title>
 
-        /* Fade-in animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1.2s ease forwards;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+<style>
+/* ----------------------- */
+/* GLOBAL STYLES */
+/* ----------------------- */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+    overflow-x: hidden;
+}
 
-        /* Glow animation */
-        @keyframes glow {
-            0% { box-shadow: 0 0 5px #00e6ff; }
-            50% { box-shadow: 0 0 20px #00e6ff; }
-            100% { box-shadow: 0 0 5px #00e6ff; }
-        }
+section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+}
 
-        header {
-            padding: 60px;
-            text-align: center;
-            background: linear-gradient(135deg, #00bcd4, #673ab7);
-            animation: fadeIn 1.5s ease forwards;
-        }
+/* ----------------------- */
+/* HEADER */
+/* ----------------------- */
+header {
+    padding: 25px;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 999;
+}
+header nav a {
+    color: #fff;
+    margin: 0 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: .3s;
+}
+header nav a:hover {
+    color: #00ffea;
+}
 
-        header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #ffffff;
-            animation: fadeIn 2s ease forwards;
-        }
+/* ----------------------- */
+/* HERO SECTION */
+/* ----------------------- */
+.hero {
+    height: 100vh;
+    background: linear-gradient(160deg, #00c0ff, #0044ff);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        header p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
+/* Floating mascot animation */
+.hero img.mascot {
+    width: 280px;
+    animation: float 4s infinite ease-in-out;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
+}
 
-        section {
-            padding: 40px;
-            max-width: 900px;
-            margin: auto;
-        }
+@keyframes float {
+    0%, 100% { transform: translateY(-10px); }
+    50% { transform: translateY(15px); }
+}
 
-        .card {
-            background: #111;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid #333;
-            animation: fadeIn 1.2s ease forwards;
-            animation-delay: 0.3s;
-        }
+.hero h1 {
+    font-size: 4rem;
+    margin: 20px 0 0;
+    text-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+.hero p {
+    max-width: 600px;
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
 
-        h2 {
-            color: #00e6ff;
-        }
+/* Parallax circles */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    animation: drift 12s infinite linear;
+}
 
-        ul li {
-            margin: 8px 0;
-        }
+@keyframes drift {
+    from { transform: translateY(0px) rotate(0); }
+    to { transform: translateY(-200px) rotate(360deg); }
+}
 
-        .btn {
-            display: inline-block;
-            padding: 12px 22px;
-            background: #00bcd4;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 6px;
-            margin-top: 10px;
-            transition: transform 0.2s, box-shadow 0.3s;
-        }
+/* ----------------------- */
+/* TOKENOMICS */
+/* ----------------------- */
+.tokenomics {
+    background: #111;
+    border-radius: 20px;
+    padding: 60px 20px;
+}
+.tokenomics .box {
+    background: #1b1b1b;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.1);
+}
 
-        .btn:hover {
-            transform: scale(1.07);
-            box-shadow: 0 0 15px #00e6ff;
-            animation: glow 1.4s infinite;
-        }
+/* ----------------------- */
+/* ROADMAP */
+/* ----------------------- */
+.roadmap-step {
+    background: #1c1c1c;
+    border-left: 5px solid #00c0ff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
+    text-align: left;
+}
 
-        /* Floating animation for cards */
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
+/* ----------------------- */
+/* BUTTONS */
+/* ----------------------- */
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background: #00ffe1;
+    color: #000;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: .3s;
+}
+.btn:hover {
+    transform: scale(1.1);
+}
 
-        .card:hover {
-            animation: float 3s infinite ease-in-out;
-            border-color: #00e6ff;
-        }
+/* ----------------------- */
+/* FOOTER */
+/* ----------------------- */
+footer {
+    padding: 40px;
+    text-align: center;
+    background: #0a0a0a;
+    opacity: 0.9;
+}
+p {
+    background-image: url('https://imgur.com/a/jsoLTrJ')
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #111;
-            color: #aaa;
-            margin-top: 40px;
-            animation: fadeIn 2s ease forwards;
-        }
-    </style>
+</style>
+</style>
 </head>
 
 <body>
 
-<header class="fade-in">
-    <h1>TruthToshi</h1>
-    <p>The Transparent Cryptocurrency for a Trust-Based Future</p>
+<header>
+    <nav>
+        <a href="index.html">Home</a>
+<a href="token.html">Token Lookup</a>
+<a href="swap.html">Swap</a>
+<a href="pools.html">Pools</a>
+    </nav>
 </header>
 
-<section>
+<!-- HERO ============================ -->
+<section class="hero" id="hero">
+    <!-- Animated parallax bubbles -->
+    <div class="circle" style="width:250px;height:250px;left:10%;top:70%;"></div>
+    <div class="circle" style="width:150px;height:150px;left:70%;top:40%;"></div>
 
-    <div class="card fade-in">
-        <h2>What is TruthToshi?</h2>
-        <p>
-            TruthToshi is a next-generation decentralized cryptocurrency built on honesty,
-            transparency, and community empowerment. No hidden agendas — just pure blockchain integrity.
-        </p>
+    <!-- Mascot image (replace with your brand logo) -->
+     <img src="https://imgur.com/a/jsoLTrJ">
+    <h1>TRUTHTOSHI</h1>
+    <p>The Transparent Cryptocurrency for a Trust-Based Future</p>
+    <a class="btn" href="#tokenomics">Explore Tokenomics</a>
+</section>
+
+<!-- TOKENOMICS ============================ -->
+<section id="tokenomics">
+    <h2 style="font-size:2.5rem;">TOKENOMICS</h2>
+    <div class="tokenomics">
+
+        <div class="box">
+            <h3>Total Supply</h3>
+            <p>1,000,000,000,000 TRUTH</p>
+        </div>
+
+        <div class="box">
+            <h3>Liquidity</h3>
+            <p>100% LP Burned • Ownership Renounced</p>
+        </div>
+
+        <div class="box">
+            <h3>Taxes</h3>
+            <p>0% Buy • 0% Sell • 0% Transfer</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ROADMAP ============================ -->
+<section id="roadmap">
+    <h2 style="font-size:2.5rem;">ROADMAP</h2>
+
+    <div class="roadmap-step">
+        <h3>Phase 1 — Launch</h3>
+        <p>Website, branding, meme story, initial liquidity pool.</p>
+    </div>
+    
+    <div class="roadmap-step">
+        <h3>Phase 2 — Community</h3>
+        <p>Influencers, social campaigns, holders rewards, contests.</p>
     </div>
 
-    <div class="card fade-in">
-        <h2>Why TruthToshi?</h2>
-        <ul>
-            <li>✔ 100% Community Owned</li>
-            <li>✔ Fully Transparent Smart Contracts</li>
-            <li>✔ Eco-friendly blockchain technology</li>
-            <li>✔ Fair Launch — No Presale, No Team Tokens</li>
-        </ul>
-    </div>
-
-    <div class="card fade-in">
-        <h2>Tokenomics</h2>
-        <p>Supply: <strong>1,000,000,000 TRUTH</strong></p>
-        <p>Tax: 0%</p>
-        <p>Liquidity: Locked</p>
-    </div>
-
-    <div class="card fade-in">
-        <h2>Join the Community</h2>
-        <p>Stay connected with the TruthToshi movement.</p>
-
-        <a class="btn" href="#">Telegram</a>
-        <a class="btn" href="#">Twitter</a>
-        <a class="btn" href="#">Discord</a>
+    <div class="roadmap-step">
+        <h3>Phase 3 — Utility</h3>
+        <p>Truth-scanner tools, transparency dashboard, staking ideas.</p>
     </div>
 
 </section>
 
+<!-- COMMUNITY ============================ -->
+<section id="community">
+    <h2 style="font-size:2.5rem;">JOIN THE COMMUNITY</h2>
+    <p>Stay updated, join the army of truth seekers.</p>
+
+    <a class="btn" href="https://x.com/TruthToshiiii" target="_blank">X</a>
+    <a class="btn" href="https://https://t.co/hkVX5bvh34" target="_blank">Telegram</a>
+    <a class="btn" href="https://pump.fun/coin/Gf4mwySVnQnZpYVS7jPEDxRYHkEzmUbdtTEuRiaapump" target="_blank">Buy</a>
+</section
+
 <footer>
-    © 2025 TruthToshi — Built for the People, Backed by Truth
+    <p>© 2025 Truthtoshi — The Memecoin of Truth</p>
 </footer>
 
 </body>

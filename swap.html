@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swap</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-theme="dark">
+
+<button class="toggle-theme" onclick="toggleTheme()">🌗</button>
+
+<header>
+  <h1>Wallet & Swap</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="token.html">Token Lookup</a>
+    <a href="swap.html">Swap</a>
+    <a href="pools.html">Pools</a>
+  </nav>
+</header>
+
+<section>
+  <div class="card">
+    <button class="btn" onclick="connectWallet()">Connect Phantom</button>
+    <div style="margin-top:15px;">
+      <input id="swapMint" placeholder="Token Mint to Buy">
+      <input id="swapAmount" placeholder="Amount" type="number">
+      <button class="btn" onclick="manualSwap()">Swap</button>
+      <div id="swapStatus" style="margin-top:10px;opacity:0.8;"></div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 TruthToshi</footer>
+
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+<script src="https://unpkg.com/@raydium-io/raydium-sdk@latest/dist/index.iife.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+async function manualSwap() {
+  if(!wallet) return alert("Connect wallet first!");
+  const mint = document.getElementById("swapMint").value.trim();
+  const amount = parseFloat(document.getElementById("swapAmount").value);
+  if(!mint || !amount) return alert("Enter mint and amount!");
+
+  document.getElementById("swapStatus").innerText = "Processing swap...";
+  try {
+    const tx = await raydiumSDK.swap({
+      connection,
+      wallet,
+      inputMint: "SOL_mint_address_here", // Replace with actual SOL mint
+      outputMint: mint,
+      amount,
+      slippage: 0.5
+    });
+    document.getElementById("swapStatus").innerText = "Swap Success! Tx: " + tx;
+  } catch(e) {
+    console.error(e);
+    document.getElementById("swapStatus").innerText = "Swap failed: " + e.message;
+  }
+}
+</script>
+
+</body>
+</html>
